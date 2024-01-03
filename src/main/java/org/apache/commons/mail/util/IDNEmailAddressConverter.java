@@ -47,7 +47,15 @@ public class IDNEmailAddressConverter
             return email;
         }
 
-        return getLocalPart(email, idx) + '@' + IDN.toASCII(getDomainPart(email, idx));
+        String localPart = getLocalPart(email, idx);
+        String domainPart = getDomainPart(email, idx);
+
+        if (localPart == null || domainPart == null) {
+            // Handle the null case here, could throw an exception or return a default value
+            throw new NullPointerException("Local part or domain part cannot be null");
+        }
+        
+        return localPart + '@' + IDN.toASCII(domainPart);
     }
 
     /**
