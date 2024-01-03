@@ -429,7 +429,7 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>LATEST</version>
+            <version>1.15.3</version>
             <configuration>
                 <!-- PITest configuration options go here -->
             </configuration>
