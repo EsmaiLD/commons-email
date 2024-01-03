@@ -426,6 +426,14 @@
               <excludeFilterFile>${basedir}/src/conf/spotbugs-exclude-filter.xml</excludeFilterFile>
             </configuration>
           </plugin>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>LATEST</version>
+            <configuration>
+                <!-- PITest configuration options go here -->
+            </configuration>
+          </plugin>
         </plugins>
     </build>
 
