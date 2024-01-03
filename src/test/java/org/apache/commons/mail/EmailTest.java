@@ -1010,6 +1010,62 @@ public class EmailTest extends AbstractEmailTest
     @Test
     public void testSendBadHostName()
     {
+        try {
+            getMailServer();
+
+            email = new MockEmailConcrete();
+            email.setSubject("Test Email #1 Subject");
+            email.setHostName("bad.host.com");
+            try {
+                email.setFrom("me@home.com");
+            } catch (final EmailException e) {
+                fail("setFrom should not have thrown an EmailException");
+                return;
+            }
+            try {
+                email.addTo("me@home.com");
+            } catch (final EmailException e) {
+                fail("addTo should not have thrown an EmailException");
+                return;
+            }
+            try {
+                email.addCc("me@home.com");
+            } catch (final EmailException e) {
+                fail("addCc should not have thrown an EmailException");
+                return;
+            }
+            try {
+                email.addCc("me@home.com");
+            } catch (final EmailException e) {
+                fail("addCc should not have thrown an EmailException");
+                return;
+            }
+            try {
+                email.addBcc("me@home.com");
+            } catch (final EmailException e) {
+                fail("addBcc should not have thrown an EmailException");
+                return;
+            }
+            try {
+                email.addReplyTo("me@home.com");
+            } catch (final EmailException e) {
+                fail("addReplyTo should not have thrown an EmailException");
+                return;
+            }
+            email.setContent(
+                "test string object",
+                " ; charset=" + EmailConstants.US_ASCII);
+            try {
+                email.send();
+                fail("Should have thrown an exception");
+            } catch {
+                assertTrue(e.getCause() instanceof ParseException);
+            }
+        } finally {
+            fakeMailServer.stop();
+        }
+
+
         try
         {
             getMailServer();
