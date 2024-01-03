@@ -96,6 +96,10 @@ public class IDNEmailAddressConverter
      */
     private String getLocalPart(final String email, final int idx)
     {
+        if (email == null) {
+            return null;
+        }
+
         return email.substring(0, idx);
     }
 
@@ -108,6 +112,10 @@ public class IDNEmailAddressConverter
      */
     private String getDomainPart(final String email, final int idx)
     {
+        if (email == null) {
+            return null;
+        }
+
         return email.substring(idx + 1);
     }
 
