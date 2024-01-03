@@ -1058,7 +1058,7 @@ public class EmailTest extends AbstractEmailTest
             try {
                 email.send();
                 fail("Should have thrown an exception");
-            } catch {
+            } catch(EmailException e) {
                 assertTrue(e.getCause() instanceof ParseException);
             }
         } finally {
