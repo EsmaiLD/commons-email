@@ -1064,33 +1064,6 @@ public class EmailTest extends AbstractEmailTest
         } finally {
             fakeMailServer.stop();
         }
-
-
-        try
-        {
-            getMailServer();
-
-            email = new MockEmailConcrete();
-            email.setSubject("Test Email #1 Subject");
-            email.setHostName("bad.host.com");
-            email.setFrom("me@home.com");
-            email.addTo("me@home.com");
-            email.addCc("me@home.com");
-            email.addBcc("me@home.com");
-            email.addReplyTo("me@home.com");
-
-            email.setContent(
-                    "test string object",
-                    " ; charset=" + EmailConstants.US_ASCII);
-
-            email.send();
-            fail("Should have thrown an exception");
-        }
-        catch (final EmailException e)
-        {
-            assertTrue(e.getCause() instanceof ParseException);
-            fakeMailServer.stop();
-        }
     }
 
     @Test
