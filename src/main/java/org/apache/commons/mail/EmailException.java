@@ -35,6 +35,7 @@ import java.nio.charset.Charset;
 public class EmailException
         extends Exception
 {
+    private final Object lock = new Object();
     /** Serializable version identifier. */
     private static final long serialVersionUID = 5550674499282474616L;
 
@@ -99,7 +100,7 @@ public class EmailException
     @Override
     public void printStackTrace(final PrintStream out)
     {
-        synchronized (out)
+        synchronized (lock)
         {
             final PrintWriter pw = new PrintWriter(new OutputStreamWriter(out, Charset.defaultCharset()), false);
             printStackTrace(pw);
@@ -117,7 +118,7 @@ public class EmailException
     @Override
     public void printStackTrace(final PrintWriter out)
     {
-        synchronized (out)
+        synchronized (lock)
         {
             super.printStackTrace(out);
         }
